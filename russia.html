@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Россия и СНГ — ВИНОТЕРРА</title>
+<meta name="description" content="Винодельческие регионы России — Крым, Кубань, Дагестан, Дон — и вина стран бывшего СССР: Грузия, Армения, Молдова, Средняя Азия.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="nav">
+  <nav class="nav-inner">
+    <a href="index.html" class="brand"><span class="logo">🍇</span> ВИНОТЕРРА</a>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Главная</a>
+      <a href="academy.html">Академия вина</a>
+      <a href="russia.html" class="active">Россия и СНГ</a>
+      <a href="world.html">Мир</a>
+      <a href="islands.html">Острова</a>
+      <a href="tasting.html">Дегустация</a>
+      <a href="about.html">О проекте</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <img class="hero-bg" src="assets/img/russia_hero.jpg" alt="Виноградники Кавказа и Крыма">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Главная</a> / Россия и СНГ</div>
+    <h1>Россия и постсоветское пространство</h1>
+    <p id="ru-intro">Виноделие России переживает возрождение, а соседние страны хранят древнейшие традиции — от грузинских квеври до армянского коньяка.</p>
+  </div>
+</section>
+
+<!-- Регионы России -->
+<section class="section" id="regions">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">🇷🇺 Винные регионы России</span><h2>Куда поехать за российским вином</h2><p>Семь винодельческих краёв — каждый со своим характером, сортами и маршрутами.</p></div>
+    <div class="grid g3" id="regions-grid"></div>
+  </div>
+</section>
+
+<!-- Факты России -->
+<section class="section-sm tint">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:30px"><span class="eyebrow">А вы знали?</span><h2>Факты о вине России</h2></div>
+    <div class="grid g3" id="ru-facts"></div>
+  </div>
+</section>
+
+<!-- Страны СНГ -->
+<section class="section" id="countries">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Бывший СССР</span><h2>Вина соседних стран</h2><p>Колыбель виноделия и оазисы Средней Азии. Найдите страну для виртуального путешествия.</p></div>
+    <div class="searchbox"><span>🔎</span><input id="c-search" placeholder="Поиск страны, сорта или вина…"></div>
+    <div class="grid g3" id="countries-grid"></div>
+    <div class="empty" id="countries-empty">Ничего не найдено.</div>
+  </div>
+</section>
+
+<section class="section tint-wine">
+  <div class="wrap"><div class="assistant-band reveal">
+    <img src="assets/img/assistant_bot.jpg" alt="Сомелье-бот">
+    <div class="txt"><span class="badge-soon">Скоро</span><h3>Не знаете, с чего начать знакомство?</h3><p>Умный сомелье подскажет, какое российское или грузинское вино открыть под ваше блюдо и настроение. Появится в следующей версии.</p><button class="btn btn-primary mt-s" data-open-assistant>🤖 Превью помощника</button></div>
+  </div></div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="fcol"><a href="index.html" class="brand"><span class="logo">🍇</span> ВИНОТЕРРА</a><p style="margin-top:14px;opacity:.8;font-size:.94rem">Интерактивный атлас виноделия мира.</p></div>
+      <div class="fcol"><h4>Разделы</h4><a href="academy.html">Академия вина</a><a href="russia.html">Россия и СНГ</a><a href="world.html">Вина мира</a><a href="islands.html">Острова</a></div>
+      <div class="fcol"><h4>Регионы</h4><a href="#regions">Крым и Кубань</a><a href="#regions">Дагестан и Дон</a><a href="#countries">Грузия и Армения</a><a href="#countries">Средняя Азия</a></div>
+      <div class="fcol"><h4>Помощник</h4><a href="#" data-open-assistant>Сомелье-бот</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 ВИНОТЕРРА · 18+ · Пейте ответственно</div>
+  </div>
+</footer>
+
+<script src="data/wine-data.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function(){
+  var R=(window.WINE&&WINE.russia)||{};
+  if(R.russia_intro) document.getElementById("ru-intro").textContent=R.russia_intro;
+  // регионы с картинками r_<id>.jpg
+  VT.renderGrid({host:"regions-grid",items:R.russia_regions||[],imgBase:"assets/img/r_"});
+  // факты
+  (R.russia_facts||[]).forEach(function(t,i){
+    var d=VT.el("div","fact reveal","<div class='k'>Факт №"+(i+1)+"</div><div class='v'>"+VT.esc(t)+"</div>");
+    document.getElementById("ru-facts").appendChild(d);
+  });
+  // страны (без картинок — карточки-факты)
+  VT.renderGrid({host:"countries-grid",items:R.countries||[],searchId:"c-search",emptyId:"countries-empty"});
+  VT.initReveal();
+})();
+</script>
+</body>
+</html>

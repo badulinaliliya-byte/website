@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(env)",
+      "Bash(cd /tmp)",
+      "Bash(unzip -o -q \"/c/Users/Lenovo/Documents/API OpenAI.docx\" -d apidoc)",
+      "Bash(sed 's/<[^>]*>//g')",
+      "Bash(grep -oE 'sk-[A-Za-z0-9_-]{20,}')",
+      "Read(//tmp/**)",
+      "Bash(curl -s -m 30 https://api.openai.com/v1/models -H 'Authorization: Bearer __CMDSUB_OUTPUT__')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{size_download}b\\\\n\" -m 25 \"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Vineyard_in_Tuscany.jpg/800px-Vineyard_in_Tuscany.jpg\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{size_download}b\\\\n\" -m 25 \"https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80\")",
+      "Bash(python -c \"import PIL; print\\('PIL', PIL.__version__\\)\")",
+      "Bash(py -c \"import PIL; print\\('PIL', PIL.__version__\\)\")",
+      "Bash(cd *)",
+      "Bash(curl -s -m 60 https://api.openai.com/v1/images/generations -H 'Authorization: Bearer __CMDSUB_OUTPUT__' -H 'Content-Type: application/json' -d '{\"model\":\"gpt-image-2\",\"prompt\":\"a sunlit vineyard in autumn, warm golden orange tones, watercolor\",\"size\":\"1024x1024\",\"n\":1}')",
+      "Bash(curl -s -m 60 https://api.openai.com/v1/images/generations -H 'Authorization: Bearer __CMDSUB_OUTPUT__' -H 'Content-Type: application/json' -d '{\"model\":\"gpt-image-2\",\"prompt\":\"sunlit autumn vineyard, warm golden tones\",\"size\":\"1024x1024\",\"n\":1}')",
+      "Bash(curl -s -m 20 https://ipinfo.io/json)",
+      "Bash(python gen.py /tmp/job_test.json)",
+      "Bash(cp /tmp/jobs_main.json ./jobs_main.json)",
+      "Bash(python -c \"import json;print\\('jobs:',len\\(json.load\\(open\\('jobs_main.json'\\)\\)\\)\\)\")",
+      "Bash(python *)",
+      "Bash(grep -E \"OK|FAIL|===\" jobs_retry.json)",
+      "Bash(cat tasks *)",
+      "Bash(grep -E \"OK|FAIL|===\" \"C:/Users/Lenovo/AppData/Local/Temp/claude/c--Projects-Claude-website/30aca61b-9b4d-45fa-8038-3ee6178768ac/tasks/b1ythe5f4.output\")",
+      "Bash(cp r_don.jpg r_dolina_dona.jpg)",
+      "Bash(cp r_terek.jpg r_dolina_tereka.jpg)",
+      "Bash(cp r_volga.jpg r_nizhnyaya_volga.jpg)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1280,3400 --screenshot=\"C:\\\\Projects_Claude\\\\website\\\\_shots\\\\x_russia_fresh.png\" --virtual-time-budget=6000 \"file:///C:/Projects_Claude/website/russia.html\")",
+      "Bash(echo \"done $?\")",
+      "Bash(cat)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1280,2000 --screenshot=\"C:\\\\Projects_Claude\\\\website\\\\_shots\\\\x_russia_top.png\" --virtual-time-budget=8000 \"file:///C:/Projects_Claude/website/russia.html\")",
+      "Bash(echo \"exit $?\")",
+      "Bash(node -e \"global.window={};require\\('C:/Projects_Claude/website/data/wine-data.js'\\);console.log\\('regions',window.WINE.russia.russia_regions.length,'countries',window.WINE.russia.countries.length,'world',window.WINE.world.countries.length\\)\")",
+      "Bash(xargs -n1 basename)",
+      "Bash(rm -f .oai_key gen.log jobs_isl.json jobs_test.json '_shots$1.png' _contact_sheet.jpg _check2.jpg)",
+      "Bash(rm -f assets/img/r_don.jpg assets/img/r_terek.jpg assets/img/r_volga.jpg)",
+      "Bash(awk '{print $NF}')"
+    ]
+  }
+}
