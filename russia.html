@@ -94,8 +94,8 @@
     var d=VT.el("div","fact reveal","<div class='k'>Факт №"+(i+1)+"</div><div class='v'>"+VT.esc(t)+"</div>");
     document.getElementById("ru-facts").appendChild(d);
   });
-  // страны (без картинок — карточки-факты)
-  VT.renderGrid({host:"countries-grid",items:R.countries||[],searchId:"c-search",emptyId:"countries-empty"});
+  // страны СНГ с картинками cis_<id>.jpg
+  VT.renderGrid({host:"countries-grid",items:R.countries||[],searchId:"c-search",emptyId:"countries-empty",imgBase:"assets/img/cis_"});
   VT.initReveal();
 })();
 </script>

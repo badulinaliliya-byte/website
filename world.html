@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Вина мира — ВИНОТЕРРА</title>
-<meta name="description" content="Виноделие 40 стран на шести континентах: Европа, Азия, Африка, Северная и Южная Америка, Австралия и Океания. Что купить и попробовать.">
+<meta name="description" content="Виноделие 60 стран на шести континентах: Европа, Азия, Африка, Северная и Южная Америка, Австралия и Океания. Что купить и попробовать.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add("js");</script>
@@ -32,7 +32,7 @@
   <div class="wrap">
     <div class="crumbs"><a href="index.html">Главная</a> / Вина мира</div>
     <h1>Вина мира</h1>
-    <p>Сорок стран, шесть континентов, тысячи вкусов. Выберите континент или найдите страну — и узнайте, какую бутылку открыть для путешествия по вкусу.</p>
+    <p>Шестьдесят стран, шесть континентов, тысячи вкусов. Выберите континент или найдите страну — и узнайте, какую бутылку открыть для путешествия по вкусу.</p>
   </div>
 </section>
 
@@ -96,7 +96,7 @@
     document.getElementById("cont-grid").appendChild(a);
   });
   // страны
-  VT.renderGrid({host:"w-grid",items:Wd.countries||[],searchId:"w-search",emptyId:"w-empty",filterBarId:"w-filter"});
+  VT.renderGrid({host:"w-grid",items:Wd.countries||[],searchId:"w-search",emptyId:"w-empty",filterBarId:"w-filter",imgBase:"assets/img/w_"});
   // программное переключение фильтра по клику на континент
   window.setCont=function(id){
     var bar=document.getElementById("w-filter");

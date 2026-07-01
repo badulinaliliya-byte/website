@@ -84,7 +84,7 @@
         (item.tagline?'<div class="tagline">'+esc(item.tagline)+'</div>':'')+
         (facts?'<ul style="margin:6px 0 0;padding-left:18px;color:var(--ink-soft);font-size:.94rem;display:flex;flex-direction:column;gap:5px">'+facts+'</ul>':'')+
         (item.signature?'<p style="margin-top:8px"><b style="color:var(--red)">✦ Чем знаменит:</b> '+esc(item.signature)+'</p>':'')+
-        (item.buy?'<p><b style="color:var(--terracotta)">🛒 Купить и «попробовать»:</b> '+esc(item.buy)+'</p>':'')+
+        (item.buy?'<p><b style="color:var(--terracotta)">🛒 Купить и попробовать:</b> '+esc(item.buy)+'</p>':'')+
         (item.tourism?'<p><b style="color:var(--amber-deep)">📍 Туристу:</b> '+esc(item.tourism)+'</p>':'')+
         chips(item.grapes)+
       '</div>';

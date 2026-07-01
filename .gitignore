@@ -1,0 +1,18 @@
+# Секреты — НИКОГДА не коммитить
+.oai_key
+*.key
+.env
+
+# Системное
+Thumbs.db
+.DS_Store
+
+# Рабочие/временные каталоги — не коммитить
+__pycache__/
+_shots/
+_cmp/
+assets/img/_orig_regen_backup/
+assets/img/_orig_1254_backup/
+
+# Локальные настройки Claude
+.claude/settings.local.json
