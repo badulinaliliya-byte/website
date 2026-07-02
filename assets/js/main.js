@@ -70,8 +70,9 @@
   }
 
   /* ---------- карточка страны/региона ---------- */
-  function placeCard(item, imgBase, imgKey){
+  function placeCard(item, imgBase, imgKey, flagBase){
     var img = imgBase ? (imgBase+(imgKey||item.id)+".jpg") : null;
+    var flag = flagBase ? '<img class="flag" src="'+flagBase+(imgKey||item.id)+'.svg" alt="" loading="lazy">' : (item.emoji?item.emoji+' ':'');
     var facts = (item.facts||[]).map(function(f){return '<li>'+esc(f)+'</li>';}).join("");
     var c=el("article","card reveal");
     c.setAttribute("data-name",(item.name||"").toLowerCase());
@@ -80,7 +81,7 @@
     c.innerHTML =
       (img?'<img class="card-img" loading="lazy" src="'+img+'" alt="'+esc(item.name)+'" onerror="this.style.display=\'none\'">':'')+
       '<div class="card-body">'+
-        '<h3>'+(item.emoji?item.emoji+' ':'')+esc(item.name)+'</h3>'+
+        '<h3>'+flag+esc(item.name)+'</h3>'+
         (item.tagline?'<div class="tagline">'+esc(item.tagline)+'</div>':'')+
         (facts?'<ul style="margin:6px 0 0;padding-left:18px;color:var(--ink-soft);font-size:.94rem;display:flex;flex-direction:column;gap:5px">'+facts+'</ul>':'')+
         (item.signature?'<p style="margin-top:8px"><b style="color:var(--red)">✦ Чем знаменит:</b> '+esc(item.signature)+'</p>':'')+
@@ -94,7 +95,7 @@
   /* ---------- рендер сетки с фильтром/поиском ---------- */
   function renderGrid(opts){
     var host=document.getElementById(opts.host); if(!host) return;
-    opts.items.forEach(function(it){host.appendChild(placeCard(it,opts.imgBase,opts.imgKey));});
+    opts.items.forEach(function(it){host.appendChild(placeCard(it,opts.imgBase,opts.imgKey,opts.flagBase));});
     var search=opts.searchId?document.getElementById(opts.searchId):null;
     var empty=opts.emptyId?document.getElementById(opts.emptyId):null;
     var filterCont="all";
