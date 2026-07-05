@@ -120,6 +120,18 @@ h1,h2,h3,h4{font-family:var(--serif);line-height:1.15;font-weight:800;color:var(
 .searchbox:focus-within{border-color:var(--amber)}
 .searchbox input{border:0;outline:0;flex:1;font-size:1rem;background:transparent;color:var(--ink);font-family:var(--font)}
 .empty{text-align:center;color:var(--ink-soft);padding:40px;display:none}
+/* ---------- Ленты сортов ---------- */
+.grape-band{margin-bottom:40px}
+.grape-band:last-child{margin-bottom:0}
+.band-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 20px;padding-bottom:11px;border-bottom:2px solid var(--line)}
+.band-title{font-family:var(--serif);font-size:clamp(1.25rem,2.6vw,1.5rem);color:var(--terracotta)}
+.band-count{font-family:var(--serif);font-weight:700;color:var(--amber);font-size:1.05rem}
+.band-note{color:var(--ink-soft);font-size:.95rem}
+.grape-band.collapsible .band-head{cursor:pointer;user-select:none}
+.grape-band.collapsible .band-head:hover .band-title{color:var(--red)}
+.band-chevron{margin-left:auto;align-self:center;color:var(--terracotta);font-size:1.1rem;transition:transform .25s}
+.grape-band.collapsed .band-chevron{transform:rotate(-90deg)}
+.grape-band.collapsed .band-grid{display:none}
 
 /* ---------- Аккордеон ---------- */
 .acc{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:12px;background:var(--paper)}

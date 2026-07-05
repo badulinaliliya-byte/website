@@ -16,3 +16,6 @@ assets/img/_orig_1254_backup/
 
 # Локальные настройки Claude
 .claude/settings.local.json
+
+# Рабочая заметка — не публиковать
+HANDOFF.md

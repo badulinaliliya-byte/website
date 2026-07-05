@@ -96,7 +96,7 @@
     document.getElementById("cont-grid").appendChild(a);
   });
   // страны
-  VT.renderGrid({host:"w-grid",items:Wd.countries||[],searchId:"w-search",emptyId:"w-empty",filterBarId:"w-filter",imgBase:"assets/img/w_"});
+  VT.renderGrid({host:"w-grid",items:Wd.countries||[],searchId:"w-search",emptyId:"w-empty",filterBarId:"w-filter",imgBase:"assets/img/w_",flagBase:"assets/img/flags/"});
   // программное переключение фильтра по клику на континент
   window.setCont=function(id){
     var bar=document.getElementById("w-filter");

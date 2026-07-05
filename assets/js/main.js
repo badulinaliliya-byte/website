@@ -72,7 +72,8 @@
   /* ---------- карточка страны/региона ---------- */
   function placeCard(item, imgBase, imgKey, flagBase){
     var img = imgBase ? (imgBase+(imgKey||item.id)+".jpg") : null;
-    var flag = flagBase ? '<img class="flag" src="'+flagBase+(imgKey||item.id)+'.svg" alt="" loading="lazy">' : (item.emoji?item.emoji+' ':'');
+    var flagFallback = item.emoji ? ' onerror="this.outerHTML=\''+item.emoji+' \'"' : ' onerror="this.style.display=\'none\'"';
+    var flag = flagBase ? '<img class="flag" src="'+flagBase+(imgKey||item.id)+'.svg" alt="" loading="lazy"'+flagFallback+'>' : (item.emoji?item.emoji+' ':'');
     var facts = (item.facts||[]).map(function(f){return '<li>'+esc(f)+'</li>';}).join("");
     var c=el("article","card reveal");
     c.setAttribute("data-name",(item.name||"").toLowerCase());

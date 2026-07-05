@@ -90,7 +90,7 @@
       <button class="filter-btn" data-gc="red">🍷 Красные</button>
       <button class="filter-btn" data-gc="white">🥂 Белые</button>
     </div>
-    <div class="grid g4" id="grapes-grid"></div>
+    <div id="grapes-groups"></div>
     <div class="empty" id="grapes-empty">Ничего не найдено — попробуйте другой запрос.</div>
   </div>
 </section>
@@ -157,11 +157,29 @@
     d.innerHTML="<div class='glass'><div class='bowl' style='--wc:"+esc(t.color)+"'></div><div class='stem'></div><div class='foot'></div></div><h4>"+esc(t.name)+"</h4><p>"+esc(t.text)+"</p>"+(t.examples?"<p style='margin-top:6px;color:var(--terracotta);font-weight:600'>"+esc(t.examples)+"</p>":"");
     document.getElementById("types-grid").appendChild(d);
   });
-  // сорта
-  var ghost=document.getElementById("grapes-grid");
+  // сорта — раскладка лентами по группам (классика открыта, остальное сворачивается)
+  var root=document.getElementById("grapes-groups");
+  var groups=(A.grapeGroups&&A.grapeGroups.length)?A.grapeGroups:[{id:"",title:"",note:""}];
+  var alwaysOpen={"red-lead":1,"white-lead":1};
+  var cnt={};(A.grapes||[]).forEach(function(g){cnt[g.group]=(cnt[g.group]||0)+1;});
+  var bandOf={};
+  groups.forEach(function(gr){
+    var collapsible=!alwaysOpen[gr.id];
+    var band=VT.el("div","grape-band reveal"+(collapsible?" collapsible collapsed":""));
+    band.setAttribute("data-band",gr.id);
+    band._collapsible=collapsible;band._userOpen=false;
+    band.innerHTML="<div class='band-head'><h3 class='band-title'>"+esc(gr.title)+"</h3>"+
+      (collapsible?"<span class='band-count'>· "+(cnt[gr.id]||0)+"</span>":"")+
+      (gr.note?"<p class='band-note'>"+esc(gr.note)+"</p>":"")+
+      (collapsible?"<span class='band-chevron' aria-hidden='true'>▾</span>":"")+"</div>";
+    var grid=VT.el("div","grid g4 band-grid");
+    band.appendChild(grid);
+    root.appendChild(band);
+    bandOf[gr.id]=grid;
+    if(collapsible){band.querySelector(".band-head").addEventListener("click",function(){band._userOpen=!band._userOpen;applyG();});}
+  });
   (A.grapes||[]).forEach(function(g){
     var isRed=(g.color||"").toLowerCase().indexOf("red")>-1||g.color==="красный";
-    var cls=isRed?"red":"white";
     var d=VT.el("article","card reveal");
     d.setAttribute("data-gc",isRed?"red":"white");
     d.setAttribute("data-s",((g.name||"")+" "+(g.aroma||"")+" "+(g.origin||"")).toLowerCase());
@@ -169,15 +187,20 @@
       "<p style='color:var(--terracotta);font-weight:600;font-size:.88rem'>🌍 "+esc(g.origin)+"</p>"+
       (g.aroma?"<p><b>Аромат:</b> "+esc(g.aroma)+"</p>":"")+
       (g.fact?"<p style='color:var(--ink-soft)'>💡 "+esc(g.fact)+"</p>":"")+"</div>";
-    ghost.appendChild(d);
+    (bandOf[g.group]||bandOf[groups[0].id]||root).appendChild(d);
   });
   var gs=document.getElementById("grape-search"), ge=document.getElementById("grapes-empty"), gf="all";
   function applyG(){
-    var q=gs.value.trim().toLowerCase(),n=0;
-    ghost.querySelectorAll(".card").forEach(function(c){
-      var okF=gf==="all"||c.getAttribute("data-gc")===gf;
-      var okQ=!q||c.getAttribute("data-s").indexOf(q)>-1;
-      var v=okF&&okQ;c.style.display=v?"":"none";if(v)n++;
+    var q=gs.value.trim().toLowerCase(),n=0,exploring=(q!=="")||(gf!=="all");
+    root.querySelectorAll(".grape-band").forEach(function(band){
+      var vb=0;
+      band.querySelectorAll(".card").forEach(function(c){
+        var okF=gf==="all"||c.getAttribute("data-gc")===gf;
+        var okQ=!q||c.getAttribute("data-s").indexOf(q)>-1;
+        var v=okF&&okQ;c.style.display=v?"":"none";if(v){vb++;n++;}
+      });
+      band.style.display=vb?"":"none";
+      if(band._collapsible){band.classList.toggle("collapsed",!(band._userOpen||exploring));}
     });
     ge.style.display=n?"none":"block";
   }
@@ -188,6 +211,7 @@
       b.classList.add("active");gf=b.getAttribute("data-gc");applyG();
     });
   });
+  applyG();
   // классификация
   (A.classification||[]).forEach(function(c){
     var d=VT.el("div","card reveal");
